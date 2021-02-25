@@ -1,0 +1,56 @@
+//
+//  PrefixHeader.pch
+//  videoClip
+//
+//  Created by db J on 2021/2/25.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+//系统
+#define K_W [UIScreen mainScreen].bounds.size.width
+#define K_H [UIScreen mainScreen].bounds.size.height
+#define FILEMANAGER [NSFileManager defaultManager]
+#define BURST_IMGPATH [MYGIF_PATH stringByAppendingPathComponent:@"afterBurstPhoto"] //从连拍中提取图片后保存的沙盒地址
+#define TLAppVerName [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+#define TLAppVerCode [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+#define TLAppBundleID [[NSBundle mainBundle] bundleIdentifier]
+#define IS_IPhoneX_All [SystemUtils isIphoneX]
+#define KWINDOW [[UIApplication sharedApplication].delegate window]
+
+//技术参数
+#define MAX_RECORD_TIME 90//19.9
+#define MAX_SELECTED_IMG_NUM 100
+#define MIN_SCROOL_TIME 0.25f
+
+#define MAX_PIXEL_VIDEOGIF 800.f//300.0f 800.f
+#define MAX_PIXEL_PICTUREGIF 800.f//400.0f
+#define MAX_PIXEL_BURSTGIF 800.f//400.0f
+#define MAX_PIXEL_VIDEOGIF_LESSIMAGE 800.f//400.0f      ///< 图片少于分割数量时采用的淸晰度
+#define PIXEL_VIDEOGIF_SEGEMENT_NUMBER 100//200       ///< 使用不同淸晰度的分割数量
+#define MYGIF_PATH [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"MyGIF"]
+#define VIDEO_IMGPATH [MYGIF_PATH stringByAppendingPathComponent:@"afterVideo"] //从视频中提取图片后保存的沙盒地址
+
+#import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+
+//类别
+#import "UIViewController+Utils.h"
+
+//工具
+#import "SystemUtils.h"
+#import "SafeObject.h"
+#import "HudManager.h"
+#import "SettingManager.h"
+
+//pod依赖、第三方
+#import <SDWebImage/SDImageCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/SDWebImagePrefetcher.h>
+#import <SDWebImage/UIView+WebCache.h>
+#endif /* PrefixHeader_pch */

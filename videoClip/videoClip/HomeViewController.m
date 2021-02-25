@@ -7,6 +7,7 @@
 
 #import "HomeViewController.h"
 #import "VideoPickerController.h"
+#import "NewVideoCutCtrl.h"
 #import <Photos/Photos.h>
 @interface HomeViewController ()
 
@@ -49,8 +50,25 @@
 }
 
 -(void)pushPickCtrl{
+    __weak typeof(self) weakSelf = self;
+    
     VideoPickerController *videoCtrl = [[VideoPickerController alloc] init];
+    videoCtrl.needCut = ^(AVAsset * _Nonnull asset, NSMutableArray * _Nonnull images) {
+        [weakSelf asyncPushCutCtrl:asset withImages:images];
+    };
+    videoCtrl.jumpEdit = ^(NSMutableArray * _Nonnull images) {
+        
+    };
     [self.navigationController pushViewController:videoCtrl animated:YES];
+}
+
+#pragma mark - 弹出裁剪界面
+- (void)asyncPushCutCtrl:(AVAsset *)avasset withImages:(NSArray *)thumbImgs {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NewVideoCutCtrl *videCutView = [[NewVideoCutCtrl alloc] init];
+        [self.navigationController pushViewController:videCutView animated:YES];
+    });
 }
 
 

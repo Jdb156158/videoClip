@@ -66,7 +66,7 @@
         _filterCollection.dataSource = self;
         _filterCollection.delegate = self;
         _filterCollection.showsHorizontalScrollIndicator = NO;
-        [_filterCollection registerNib:[UINib nibWithNibName:@"FilterCell" bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([FilterCollectionCell class])];
+        [_filterCollection registerNib:[UINib nibWithNibName:@"FilterCollectionCell" bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([FilterCollectionCell class])];
     }
     return _filterCollection;
 }

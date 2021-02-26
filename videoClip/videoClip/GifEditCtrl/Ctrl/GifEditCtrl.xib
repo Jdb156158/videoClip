@@ -159,6 +159,9 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9OR-av-DqX">
                                     <rect key="frame" x="248.5" y="0.0" width="82.5" height="90"/>
                                     <state key="normal" title="滤镜"/>
+                                    <connections>
+                                        <action selector="clickFilterBtn:" destination="-1" eventType="touchUpInside" id="HUI-6s-JPj"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNG-Pk-gN4">
                                     <rect key="frame" x="331" y="0.0" width="83" height="90"/>

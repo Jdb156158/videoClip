@@ -7,6 +7,7 @@
 
 #import "GifEditCtrl.h"
 #import "ThumbCell.h"
+#import "FilterEmojiView.h"
 
 @interface GifEditCtrl () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
@@ -28,7 +29,13 @@
 
 @property (nonatomic, strong) NSMutableArray *allModels, *selectedModels;
 @property (nonatomic, assign) NSInteger currentIndex, lastIndex;
-@property (nonatomic, assign) BOOL isReverse, isPlayPause;//正序/倒序、播放/暂停
+@property (nonatomic, assign) BOOL isReverse, isPlayPause,openFilter;//正序/倒序、播放/暂停、是否打开滤镜view
+
+//当前滤镜
+@property (strong, nonatomic) FilterEmojiView *filterDisplayView;
+@property (strong, nonatomic) Filter *activeFilter;
+@property (strong, nonatomic) NSIndexPath *currentIndexPath;
+
 @end
 
 @implementation GifEditCtrl{
@@ -54,7 +61,7 @@
     
     [super viewDidAppear:animated];
     
-    //[self refreshDataAndView];
+    [self refreshDataAndView];
     self.currentIndex = 0;
     [self initPlayTimer:self.imgDelay isReverseOrder:self.isReverse];
     _nowFrameNum.text = [NSString stringWithFormat:@"%ld%@", (long)self.selectedModels.count, @"帧"];
@@ -67,6 +74,9 @@
     [self initOriginData];
     [self initSliderAndImgDelay];
     [self initCollection];
+    
+    //当前滤镜
+    self.activeFilter = self.filterDisplayView.filters.firstObject;
 }
 
 - (void)initCollection {
@@ -124,6 +134,33 @@
     _delaySlider.value = self.imgDelay;
     _isReverse = IMG_REVERSE_DEFAULT;
     _delayLabel.text = [NSString stringWithFormat:@"%.2fs", self.imgDelay];
+}
+
+- (FilterEmojiView *)filterDisplayView {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    if (!_filterDisplayView) {
+        CGFloat height = IS_IPhoneX_All ? 213 : 179;
+        _filterDisplayView = [[FilterEmojiView alloc] initWithFrame:CGRectMake(0, K_H, K_W, height)];
+        _filterDisplayView.backgroundColor = [UIColor yellowColor];
+        FrameModel *model = self.selectedModels.firstObject;
+        _filterDisplayView.sourceImage = [UIImage imageWithContentsOfFile:model.imagePath];
+        
+        _filterDisplayView.didCloseFilterDisplayView = ^{
+            weakSelf.openFilter = NO;
+        };
+        
+        _filterDisplayView.didSelectFilterAtIndex = ^(NSIndexPath * _Nonnull indexPath, UICollectionView * _Nonnull collectionView, Filter * _Nonnull filter) {
+            weakSelf.currentIndexPath = indexPath;
+            weakSelf.filterDisplayView.lastIndexPath = indexPath;
+            weakSelf.activeFilter = filter;
+            [weakSelf refreshDataAndView];
+            [weakSelf.filterDisplayView reloadData];
+        };
+        [self.view addSubview:_filterDisplayView];
+    }
+    return _filterDisplayView;
 }
 
 #pragma mark - get & set
@@ -255,6 +292,55 @@
     return result;
 }
 
+#pragma mark - data
+- (void)refreshDataAndView {
+    
+    NSLog(@"self.activeFilter.ciFilterTitle = %@",self.activeFilter.ciFilterTitle);
+
+    [self.selectedModels removeAllObjects];
+    
+    
+    for (int i = 0;  i< self.allModels.count; i ++) {
+        
+        FrameModel *model = self.allModels[i];
+         if (model.isSelected) {
+                   
+
+                   if ([self.activeFilter.ciFilterTitle isEqualToString:@""]) {
+                       FrameModel *selectModel  = [[FrameModel alloc]init];
+                       selectModel.isSelected = YES;
+                       selectModel.imagePath = model.imagePath;
+                       [self.selectedModels addObject:selectModel];
+                       
+                   } else {
+                       
+                       UIImage *image = [UIImage imageWithContentsOfFile:model.imagePath];
+                       UIImage *filterImg = [image applyFilter:self.activeFilter];
+                       
+                       NSString *imgPath = [NSString stringWithFormat:@"%@%@%d.png",VIDEO_IMGPATH,self.activeFilter.ciFilterTitle,i];
+                       
+                       FrameModel *selectModel  = [[FrameModel alloc]init];
+                    selectModel.isSelected = YES;
+                       selectModel.imagePath = imgPath;
+                       NSData *imgData = UIImageJPEGRepresentation(filterImg, 1.0);
+    
+                       BOOL isWrited =  [imgData writeToFile:imgPath atomically:YES];
+                       
+                       NSLog(@"路径写入 = %d",isWrited);
+                       [self.selectedModels addObject:selectModel];
+                       
+                   }
+                   
+              
+               }
+    }
+    
+
+    
+    NSLog(@"self.selectedModels.count = %lu",(unsigned long)self.selectedModels.count);
+    [_thumbCollection reloadData];
+}
+
 #pragma mark - play images
 - (void)initPlayTimer:(float)interval isReverseOrder:(BOOL)isReverse {
     if (_playTimer) {
@@ -302,6 +388,14 @@
 
 - (IBAction)clickZhenListBtn:(id)sender {
     
+}
+
+- (IBAction)clickFilterBtn:(id)sender {
+    _openFilter = YES;
+    CGRect filterFrame = self.filterDisplayView.frame;
+    [UIView animateWithDuration:.3 animations:^{
+        self.filterDisplayView.frame = CGRectMake(0, K_H - filterFrame.size.height, K_W, filterFrame.size.height);
+    }];
 }
 
 - (IBAction)clickFinshBtn:(id)sender {

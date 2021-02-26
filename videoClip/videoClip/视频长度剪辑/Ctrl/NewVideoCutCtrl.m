@@ -93,7 +93,7 @@
         configLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         configLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
 
-        _thumbCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 60) collectionViewLayout:configLayout];
+        _thumbCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-26, 60) collectionViewLayout:configLayout];
         _thumbCollection.delegate = self;
         _thumbCollection.dataSource = self;
         _thumbCollection.showsVerticalScrollIndicator = NO;//隐藏滚动条
@@ -110,7 +110,7 @@
         _playerItem = [AVPlayerItem playerItemWithAsset:_originalAsset];
         _videoPlayer = [AVPlayer playerWithPlayerItem:_playerItem];
         AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_videoPlayer];
-        playerLayer.frame = CGRectMake(0, 0, K_W-20, K_W-20);
+        playerLayer.frame = CGRectMake(0, 0, K_W, K_W);
         [_videoView.layer addSublayer:playerLayer];
     }
 }

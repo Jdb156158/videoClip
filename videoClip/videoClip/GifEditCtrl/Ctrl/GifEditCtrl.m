@@ -6,8 +6,9 @@
 //
 
 #import "GifEditCtrl.h"
+#import "ThumbCell.h"
 
-@interface GifEditCtrl ()
+@interface GifEditCtrl () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *nowFrameNum;
 @property (weak, nonatomic) IBOutlet UIImageView *displayImg;
@@ -15,14 +16,24 @@
 @property (weak, nonatomic) IBOutlet UILabel *delayLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *markIV;
 @property (strong, nonatomic) EditImageView *markIVForEdit;
+@property (weak, nonatomic) IBOutlet UIView *yuanlanBgView;
+
+@property (weak, nonatomic) IBOutlet UIButton *zantingBtn;
+@property (weak, nonatomic) IBOutlet UIButton *daoxuBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cutBtn;
+@property (weak, nonatomic) IBOutlet UIButton *filterBtn;
+@property (weak, nonatomic) IBOutlet UIButton *changeTextBnt;
+
+@property (strong, nonatomic) UICollectionView *thumbCollection;
 
 @property (nonatomic, strong) NSMutableArray *allModels, *selectedModels;
 @property (nonatomic, assign) NSInteger currentIndex, lastIndex;
-@property (nonatomic, assign) BOOL isReverse, isPlayPause;
+@property (nonatomic, assign) BOOL isReverse, isPlayPause;//正序/倒序、播放/暂停
 @end
 
 @implementation GifEditCtrl{
     NSTimer *_playTimer;
+    ThumbCell *_lastCell;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -38,13 +49,53 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
+// 视图实际可见时调用
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    //[self refreshDataAndView];
+    self.currentIndex = 0;
+    [self initPlayTimer:self.imgDelay isReverseOrder:self.isReverse];
+    _nowFrameNum.text = [NSString stringWithFormat:@"%ld%@", (long)self.selectedModels.count, @"帧"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     [self initOriginData];
     [self initSliderAndImgDelay];
-    
+    [self initCollection];
+}
+
+- (void)initCollection {
+    [self.yuanlanBgView addSubview:self.thumbCollection];
+}
+
+- (UICollectionView *)thumbCollection{
+    if (!_thumbCollection) {
+        
+        NSInteger allTime = PIXEL_VIDEOGIF_SEGEMENT_NUMBER / [SettingManager shareManager].videoExractFPS;
+        NSLog(@"======videoExractFPS %ld",[SettingManager shareManager].videoExractFPS);
+        NSInteger width = (K_W-24- 1*allTime) / allTime;   //保证是一排10个，一屏的时间刚好20s
+        
+        CellFlowLayout *configLayout = [[CellFlowLayout alloc]init];
+        configLayout.kCollectionViewWidth = width;
+        configLayout.kCollectionViewHeight = 60;
+        configLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        configLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+
+        _thumbCollection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-24, 60) collectionViewLayout:configLayout];
+        _thumbCollection.delegate = self;
+        _thumbCollection.dataSource = self;
+        _thumbCollection.showsVerticalScrollIndicator = NO;//隐藏滚动条
+        _thumbCollection.userInteractionEnabled = NO;//禁止交互
+        _thumbCollection.backgroundColor = [UIColor yellowColor];
+        [_thumbCollection registerNib:[UINib nibWithNibName:@"ThumbCell" bundle:nil] forCellWithReuseIdentifier:@"ThumbCell"];
+
+    }
+    return _thumbCollection;
 }
 
 - (void)initBaseView {
@@ -98,28 +149,28 @@
     _currentIndex = currentIndex;
     
     //滚动时间轴
-//    if (currentIndex>=0 && currentIndex<self.selectedModels.count) {
-//        bool isAnimated = abs((int)(_lastIndex - currentIndex)) < 2;
-//        NSIndexPath *pointIndex = [NSIndexPath indexPathForRow:currentIndex inSection:0];
-//        [_thumbCollection scrollToItemAtIndexPath:pointIndex atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:isAnimated];
-//
-//        if (self.imgDelay > MIN_SCROOL_TIME) {    //大于指定时间才显示指针
-//            _lastIndex = currentIndex;
-//
-//            //找到当前单元格，点亮图标
-//            if (_lastCell) {
-//                _lastCell.showBiao = NO;
-//            }
-//            ThumbCell *curCell = (ThumbCell *)[_thumbCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
-//            if (curCell) {
-//                curCell.showBiao = YES;
-//                _lastCell = curCell;
-//            }
-//        }
-//        else {
-//            _lastCell.showBiao = NO;
-//        }
-//    }
+    if (currentIndex>=0 && currentIndex<self.selectedModels.count) {
+        bool isAnimated = abs((int)(_lastIndex - currentIndex)) < 2;
+        NSIndexPath *pointIndex = [NSIndexPath indexPathForRow:currentIndex inSection:0];
+        [_thumbCollection scrollToItemAtIndexPath:pointIndex atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:isAnimated];
+
+        if (self.imgDelay > MIN_SCROOL_TIME) {    //大于指定时间才显示指针
+            _lastIndex = currentIndex;
+
+            //找到当前单元格，点亮图标
+            if (_lastCell) {
+                _lastCell.showBiao = NO;
+            }
+            ThumbCell *curCell = (ThumbCell *)[_thumbCollection cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+            if (curCell) {
+                curCell.showBiao = YES;
+                _lastCell = curCell;
+            }
+        }
+        else {
+            _lastCell.showBiao = NO;
+        }
+    }
 }
 
 //设置GIF图播放速度
@@ -245,7 +296,8 @@
 }
 
 - (IBAction)clickBackBtn:(id)sender {
-    
+    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)clickZhenListBtn:(id)sender {
@@ -354,6 +406,19 @@
     self.imgDelay = sender.value;
 }
 
+#pragma mark -buttom tool click btn
+//暂停/开始
+- (IBAction)clickPauseBtn:(UIButton *)sender {
+    self.isPlayPause = !sender.selected;
+    sender.selected = !sender.selected;
+}
+
+//正序/倒序
+- (IBAction)clickFlashbackBtn:(UIButton *)sender {
+    self.isReverse = sender.selected;
+    sender.selected = !sender.selected;
+}
+
 //判断是否为同一尺寸的图片
 - (BOOL)isSameSize:(NSArray *)imgs {
     CGSize lastSize = [UIImage imageWithContentsOfFile:imgs.firstObject].size;
@@ -367,5 +432,26 @@
         }
     }
     return YES;
+}
+
+#pragma mark - collectiondelegate
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.selectedModels.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item >= self.selectedModels.count) {
+        NSLog(@"数组越界");
+        return nil;
+    }
+    ThumbCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ThumbCell class]) forIndexPath:indexPath];
+    FrameModel *model = self.selectedModels[indexPath.item];
+    cell.model = model;
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"选中%ld", indexPath.item);
 }
 @end

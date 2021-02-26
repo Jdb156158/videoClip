@@ -14,6 +14,12 @@
 		070ACAD625E7CF3100574FF6 /* GifResultCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 070ACAD425E7CF3100574FF6 /* GifResultCtrl.m */; };
 		070ACAD725E7CF3100574FF6 /* GifResultCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070ACAD525E7CF3100574FF6 /* GifResultCtrl.xib */; };
 		070ACADD25E7D65400574FF6 /* EditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 070ACADC25E7D65400574FF6 /* EditImageView.m */; };
+		0730108425E8D78C00F2ADBB /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0730108325E8D78C00F2ADBB /* Filter.m */; };
+		0730108A25E8D93300F2ADBB /* FilterCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0730108825E8D93300F2ADBB /* FilterCollectionCell.m */; };
+		0730108B25E8D93300F2ADBB /* FilterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0730108925E8D93300F2ADBB /* FilterCollectionCell.xib */; };
+		0730108F25E8DB1600F2ADBB /* UIImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 0730108E25E8DB1600F2ADBB /* UIImage+Extras.m */; };
+		0730109325E8DEDB00F2ADBB /* FilterEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0730109225E8DEDB00F2ADBB /* FilterEmojiView.m */; };
+		0787ADA225E8E701005528BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0787ADA425E8E701005528BC /* InfoPlist.strings */; };
 		07AFD93D25E63CBE00A323A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AFD93C25E63CBE00A323A0 /* AppDelegate.m */; };
 		07AFD94625E63CBE00A323A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07AFD94425E63CBE00A323A0 /* Main.storyboard */; };
 		07AFD94825E63CC100A323A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07AFD94725E63CC100A323A0 /* Assets.xcassets */; };
@@ -52,6 +58,22 @@
 		070ACAD525E7CF3100574FF6 /* GifResultCtrl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GifResultCtrl.xib; sourceTree = "<group>"; };
 		070ACADB25E7D65400574FF6 /* EditImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditImageView.h; sourceTree = "<group>"; };
 		070ACADC25E7D65400574FF6 /* EditImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditImageView.m; sourceTree = "<group>"; };
+		0730108225E8D78C00F2ADBB /* Filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		0730108325E8D78C00F2ADBB /* Filter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
+		0730108725E8D93300F2ADBB /* FilterCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterCollectionCell.h; sourceTree = "<group>"; };
+		0730108825E8D93300F2ADBB /* FilterCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionCell.m; sourceTree = "<group>"; };
+		0730108925E8D93300F2ADBB /* FilterCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionCell.xib; sourceTree = "<group>"; };
+		0730108D25E8DB1600F2ADBB /* UIImage+Extras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extras.h"; sourceTree = "<group>"; };
+		0730108E25E8DB1600F2ADBB /* UIImage+Extras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extras.m"; sourceTree = "<group>"; };
+		0730109125E8DEDB00F2ADBB /* FilterEmojiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterEmojiView.h; sourceTree = "<group>"; };
+		0730109225E8DEDB00F2ADBB /* FilterEmojiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterEmojiView.m; sourceTree = "<group>"; };
+		0787AD9C25E8E6A2005528BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		0787AD9D25E8E6A2005528BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		0787ADA325E8E701005528BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		0787ADA625E8E704005528BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0787ADA825E8E7C2005528BC /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Main.strings"; sourceTree = "<group>"; };
+		0787ADA925E8E7C2005528BC /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		0787ADAA25E8E7C3005528BC /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		07AFD93825E63CBE00A323A0 /* videoClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = videoClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AFD93B25E63CBE00A323A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		07AFD93C25E63CBE00A323A0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -154,6 +176,44 @@
 			path = GifResultCtrl;
 			sourceTree = "<group>";
 		};
+		0730107E25E8D68B00F2ADBB /* FilterCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				0730108125E8D72C00F2ADBB /* Model */,
+				0730108025E8D72200F2ADBB /* View */,
+				0730107F25E8D71A00F2ADBB /* Cell */,
+			);
+			path = FilterCtrl;
+			sourceTree = "<group>";
+		};
+		0730107F25E8D71A00F2ADBB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0730108725E8D93300F2ADBB /* FilterCollectionCell.h */,
+				0730108825E8D93300F2ADBB /* FilterCollectionCell.m */,
+				0730108925E8D93300F2ADBB /* FilterCollectionCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0730108025E8D72200F2ADBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0730109125E8DEDB00F2ADBB /* FilterEmojiView.h */,
+				0730109225E8DEDB00F2ADBB /* FilterEmojiView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0730108125E8D72C00F2ADBB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0730108225E8D78C00F2ADBB /* Filter.h */,
+				0730108325E8D78C00F2ADBB /* Filter.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		07AFD92F25E63CBE00A323A0 = {
 			isa = PBXGroup;
 			children = (
@@ -177,10 +237,11 @@
 			children = (
 				07AFD9C425E75B1D00A323A0 /* Category */,
 				07AFD9BF25E7597400A323A0 /* UtilsTools */,
-				07AFD99525E6825E00A323A0 /* 视频剪辑 */,
+				07AFD99525E6825E00A323A0 /* 视频长度剪辑 */,
 				07AFD96E25E652B400A323A0 /* VideoPickerCtrl */,
 				070ACAC225E7A87300574FF6 /* GifEditCtrl */,
 				070ACAD225E7CF1400574FF6 /* GifResultCtrl */,
+				0730107E25E8D68B00F2ADBB /* FilterCtrl */,
 				07AFD93B25E63CBE00A323A0 /* AppDelegate.h */,
 				07AFD93C25E63CBE00A323A0 /* AppDelegate.m */,
 				07AFD95725E643C700A323A0 /* HomeViewController.h */,
@@ -192,6 +253,7 @@
 				07AFD94C25E63CC100A323A0 /* Info.plist */,
 				07AFD94D25E63CC100A323A0 /* main.m */,
 				07AFD9A725E7455700A323A0 /* PrefixHeader.pch */,
+				0787ADA425E8E701005528BC /* InfoPlist.strings */,
 			);
 			path = videoClip;
 			sourceTree = "<group>";
@@ -220,14 +282,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		07AFD99525E6825E00A323A0 /* 视频剪辑 */ = {
+		07AFD99525E6825E00A323A0 /* 视频长度剪辑 */ = {
 			isa = PBXGroup;
 			children = (
 				07AFD99C25E743C600A323A0 /* model */,
 				07AFD9AB25E747DB00A323A0 /* View */,
 				07AFD9B825E74D8800A323A0 /* Ctrl */,
 			);
-			path = "视频剪辑";
+			path = "视频长度剪辑";
 			sourceTree = "<group>";
 		};
 		07AFD99C25E743C600A323A0 /* model */ = {
@@ -283,6 +345,8 @@
 			children = (
 				07AFD9C525E75B6700A323A0 /* UIViewController+Utils.h */,
 				07AFD9C625E75B6700A323A0 /* UIViewController+Utils.m */,
+				0730108D25E8DB1600F2ADBB /* UIImage+Extras.h */,
+				0730108E25E8DB1600F2ADBB /* UIImage+Extras.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -338,6 +402,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-HK",
 			);
 			mainGroup = 07AFD92F25E63CBE00A323A0;
 			productRefGroup = 07AFD93925E63CBE00A323A0 /* Products */;
@@ -355,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07AFD94B25E63CC100A323A0 /* LaunchScreen.storyboard in Resources */,
+				0787ADA225E8E701005528BC /* InfoPlist.strings in Resources */,
 				07AFD94825E63CC100A323A0 /* Assets.xcassets in Resources */,
 				07AFD94625E63CBE00A323A0 /* Main.storyboard in Resources */,
 				07AFD97925E6584F00A323A0 /* PickerCell.xib in Resources */,
@@ -364,6 +431,7 @@
 				07AFD9DC25E77B6100A323A0 /* ThumbCell.xib in Resources */,
 				070ACAD725E7CF3100574FF6 /* GifResultCtrl.xib in Resources */,
 				07AFD95B25E643C700A323A0 /* HomeViewController.xib in Resources */,
+				0730108B25E8D93300F2ADBB /* FilterCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,11 +489,14 @@
 				070ACADD25E7D65400574FF6 /* EditImageView.m in Sources */,
 				07AFD9BC25E74DC900A323A0 /* NewVideoCutCtrl.m in Sources */,
 				07AFD9C725E75B6700A323A0 /* UIViewController+Utils.m in Sources */,
+				0730108A25E8D93300F2ADBB /* FilterCollectionCell.m in Sources */,
 				070ACAD625E7CF3100574FF6 /* GifResultCtrl.m in Sources */,
 				07AFD98C25E67BD100A323A0 /* HudManager.m in Sources */,
 				07AFD9D625E77AD800A323A0 /* FrameModel.m in Sources */,
 				07AFD93D25E63CBE00A323A0 /* AppDelegate.m in Sources */,
+				0730108425E8D78C00F2ADBB /* Filter.m in Sources */,
 				07AFD98225E6662800A323A0 /* CellFlowLayout.m in Sources */,
+				0730108F25E8DB1600F2ADBB /* UIImage+Extras.m in Sources */,
 				07AFD9CC25E75C3000A323A0 /* SafeObject.m in Sources */,
 				070ACAC625E7A8E400574FF6 /* GifEditCtrl.m in Sources */,
 				07AFD9C225E759A900A323A0 /* SystemUtils.m in Sources */,
@@ -435,16 +506,29 @@
 				07AFD95A25E643C700A323A0 /* HomeViewController.m in Sources */,
 				07AFD97825E6584F00A323A0 /* PickerCell.m in Sources */,
 				07AFD97225E652D200A323A0 /* VideoPickerController.m in Sources */,
+				0730109325E8DEDB00F2ADBB /* FilterEmojiView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0787ADA425E8E701005528BC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0787ADA325E8E701005528BC /* zh-Hans */,
+				0787ADA625E8E704005528BC /* en */,
+				0787ADAA25E8E7C3005528BC /* zh-HK */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		07AFD94425E63CBE00A323A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				07AFD94525E63CBE00A323A0 /* Base */,
+				0787AD9C25E8E6A2005528BC /* zh-Hans */,
+				0787ADA825E8E7C2005528BC /* zh-HK */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -453,6 +537,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				07AFD94A25E63CC100A323A0 /* Base */,
+				0787AD9D25E8E6A2005528BC /* zh-Hans */,
+				0787ADA925E8E7C2005528BC /* zh-HK */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -464,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -523,6 +610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

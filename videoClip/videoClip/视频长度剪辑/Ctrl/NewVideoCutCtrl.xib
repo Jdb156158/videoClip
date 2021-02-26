@@ -43,7 +43,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Dh-iE-o54">
-                    <rect key="frame" x="177" y="732" width="60" height="30"/>
+                    <rect key="frame" x="177" y="658" width="60" height="30"/>
                     <color key="backgroundColor" red="1" green="0.4431372549" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="Ssp-RP-kKt"/>
@@ -67,7 +67,7 @@
                 <constraint firstItem="LdZ-lb-29y" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="13" id="adm-Hl-N9R"/>
                 <constraint firstItem="SFu-6E-i6e" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="bA7-0L-DXB"/>
                 <constraint firstItem="EwC-Vz-7hU" firstAttribute="top" secondItem="SFu-6E-i6e" secondAttribute="bottom" constant="5" id="ff8-mv-rvA"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="7Dh-iE-o54" secondAttribute="bottom" constant="100" id="iEX-BX-ywc"/>
+                <constraint firstItem="7Dh-iE-o54" firstAttribute="top" secondItem="LdZ-lb-29y" secondAttribute="bottom" constant="60" id="kb8-9h-8SW"/>
                 <constraint firstItem="LdZ-lb-29y" firstAttribute="top" secondItem="EwC-Vz-7hU" secondAttribute="bottom" constant="40" id="pgd-Bm-le0"/>
                 <constraint firstItem="SFu-6E-i6e" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="20" id="y4W-O3-iob"/>
             </constraints>

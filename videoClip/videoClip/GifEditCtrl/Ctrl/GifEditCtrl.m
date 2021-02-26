@@ -509,7 +509,7 @@
 
 //正序/倒序
 - (IBAction)clickFlashbackBtn:(UIButton *)sender {
-    self.isReverse = sender.selected;
+    self.isReverse = !sender.selected;
     sender.selected = !sender.selected;
 }
 

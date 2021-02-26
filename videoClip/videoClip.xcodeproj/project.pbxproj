@@ -237,7 +237,7 @@
 			children = (
 				07AFD9C425E75B1D00A323A0 /* Category */,
 				07AFD9BF25E7597400A323A0 /* UtilsTools */,
-				07AFD99525E6825E00A323A0 /* 视频长度剪辑 */,
+				07AFD99525E6825E00A323A0 /* VideoCutCtrl */,
 				07AFD96E25E652B400A323A0 /* VideoPickerCtrl */,
 				070ACAC225E7A87300574FF6 /* GifEditCtrl */,
 				070ACAD225E7CF1400574FF6 /* GifResultCtrl */,
@@ -282,14 +282,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		07AFD99525E6825E00A323A0 /* 视频长度剪辑 */ = {
+		07AFD99525E6825E00A323A0 /* VideoCutCtrl */ = {
 			isa = PBXGroup;
 			children = (
 				07AFD99C25E743C600A323A0 /* model */,
 				07AFD9AB25E747DB00A323A0 /* View */,
 				07AFD9B825E74D8800A323A0 /* Ctrl */,
 			);
-			path = "视频长度剪辑";
+			path = VideoCutCtrl;
 			sourceTree = "<group>";
 		};
 		07AFD99C25E743C600A323A0 /* model */ = {

@@ -7,6 +7,7 @@ target 'videoClip' do
   use_frameworks!
 
   # Pods for videoClip
+  pod 'Masonry'
   pod 'MBProgressHUD', '~> 1.0.0'
   pod 'SDWebImage'
   pod 'SDWebImage/GIF'

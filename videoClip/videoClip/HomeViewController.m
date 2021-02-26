@@ -40,8 +40,12 @@
 -(void)requestAlbumAuth{
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status == PHAuthorizationStatusAuthorized) {
-            //允许
-            [self pushPickCtrl];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //允许
+                [self pushPickCtrl];
+            });
+            
             
         }else if (status == PHAuthorizationStatusDenied || status == PHAuthorizationStatusRestricted) {
             //不允许
@@ -67,6 +71,8 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         NewVideoCutCtrl *videCutView = [[NewVideoCutCtrl alloc] init];
+        videCutView.originalAsset = avasset;
+        videCutView.thumbImgs = thumbImgs;
         [self.navigationController pushViewController:videCutView animated:YES];
     });
 }

@@ -1,5 +1,6 @@
 PODS:
   - FLAnimatedImage (1.0.15)
+  - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
   - SDWebImage (4.4.8):
     - SDWebImage/Core (= 4.4.8)
@@ -9,6 +10,7 @@ PODS:
     - SDWebImage/Core
 
 DEPENDENCIES:
+  - Masonry
   - MBProgressHUD (~> 1.0.0)
   - SDWebImage
   - SDWebImage/GIF
@@ -16,14 +18,16 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - FLAnimatedImage
+    - Masonry
     - MBProgressHUD
     - SDWebImage
 
 SPEC CHECKSUMS:
   FLAnimatedImage: dd3db277b17e909ec3c7fd41adfce79b321d960e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
 
-PODFILE CHECKSUM: 873c9f9fc7319550435efa6b275f74f1d3a486c9
+PODFILE CHECKSUM: 15282edb156c10dba376a63f74292c11a257ab97
 
 COCOAPODS: 1.10.0

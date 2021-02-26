@@ -20,7 +20,7 @@
 - (void)prepareLayout {
     [super prepareLayout];
     self.itemSize = CGSizeMake(_kCollectionViewWidth, _kCollectionViewHeight);
-    self.minimumLineSpacing = 15;
+    self.minimumLineSpacing = 1;
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {

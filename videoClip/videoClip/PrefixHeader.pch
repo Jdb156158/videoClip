@@ -15,7 +15,6 @@
 #define K_W [UIScreen mainScreen].bounds.size.width
 #define K_H [UIScreen mainScreen].bounds.size.height
 #define FILEMANAGER [NSFileManager defaultManager]
-#define BURST_IMGPATH [MYGIF_PATH stringByAppendingPathComponent:@"afterBurstPhoto"] //从连拍中提取图片后保存的沙盒地址
 #define TLAppVerName [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define TLAppVerCode [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 #define TLAppBundleID [[NSBundle mainBundle] bundleIdentifier]
@@ -32,8 +31,24 @@
 #define MAX_PIXEL_BURSTGIF 800.f//400.0f
 #define MAX_PIXEL_VIDEOGIF_LESSIMAGE 800.f//400.0f      ///< 图片少于分割数量时采用的淸晰度
 #define PIXEL_VIDEOGIF_SEGEMENT_NUMBER 100//200       ///< 使用不同淸晰度的分割数量
+#define IMG_DELAY_DEFAULT 0.3f  //默认的速度
+#define IMG_REVERSE_DEFAULT 0
+
 #define MYGIF_PATH [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"MyGIF"]
+
 #define VIDEO_IMGPATH [MYGIF_PATH stringByAppendingPathComponent:@"afterVideo"] //从视频中提取图片后保存的沙盒地址
+#define BURST_IMGPATH [MYGIF_PATH stringByAppendingPathComponent:@"afterBurstPhoto"] //从连拍中提取图片后保存的沙盒地址
+#define FINAL_IMGPATH [MYGIF_PATH stringByAppendingPathComponent:@"final"] //给图片添加完水印文字后的沙盒地址
+#define TEXT_IMGPATH [MYGIF_PATH stringByAppendingPathComponent:@"addText"] //给图片添加文字后再沙盒中存放的地址
+#define EDIT_IMGPATH [MYGIF_PATH stringByAppendingPathComponent:@"afterEdit"] //编辑完之后的图片地址
+
+#define PATH_VIDEO [MYGIF_PATH stringByAppendingPathComponent:@"now_mov.mov"]
+#define PATH_GIF [MYGIF_PATH stringByAppendingPathComponent:@"now_gif.gif"]
+#define PATH_SHARE_GIF [MYGIF_PATH stringByAppendingPathComponent:@"now_share_gif.gif"]
+#define PATH_NOWATERMARK_GIF [MYGIF_PATH stringByAppendingPathComponent:@"now_no_watermark_gif.gif"]
+#define PATH_NOWATERMARK_SHARE_GIF [MYGIF_PATH stringByAppendingPathComponent:@"now_no_watermark_share_gif.gif"]
+#define PATH_LOWEST_GIF [MYGIF_PATH stringByAppendingPathComponent:@"now_lowest_gif.gif"] //非常低清gif
+#define PATH_LOWER_GIF [MYGIF_PATH stringByAppendingPathComponent:@"now_lower_gif.gif"]    //低清gif
 
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
@@ -44,13 +59,28 @@
 
 //工具
 #import "SystemUtils.h"
+#import "GifUtils.h"
 #import "SafeObject.h"
 #import "HudManager.h"
+#import "EditorModel.h"
 #import "SettingManager.h"
 
 //pod依赖、第三方
+#import <Masonry.h>
 #import <SDWebImage/SDImageCache.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/SDWebImagePrefetcher.h>
 #import <SDWebImage/UIView+WebCache.h>
+#import <FLAnimatedImage/FLAnimatedImage.h>
+#import <FLAnimatedImage/FLAnimatedImageView.h>
+
+//使用频率高的功能视图
+#import "GifEditCtrl.h"
+#import "GifResultCtrl.h"
+
+//使用频率高的view
+#import "EditImageView.h"
+
+//使用频率高的model
+#import "FrameModel.h"
 #endif /* PrefixHeader_pch */

@@ -177,11 +177,11 @@
     PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
     options.networkAccessAllowed = YES;
     [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset * _Nullable avasset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
-        __block BOOL needCut = asset.duration*[SettingManager shareManager].videoExractFPS > PIXEL_VIDEOGIF_SEGEMENT_NUMBER;//asset.duration > MAX_RECORD_TIME
+        __block BOOL needCut = asset.duration*[SettingManager shareManager].videoExractFPS > PIXEL_VIDEOGIF_SEGEMENT_NUMBER;
         float interval = needCut ? 1.0f : [SettingManager shareManager].floatFps;
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self imgsWithVideoAsset:avasset withTimeInterval:interval withTimeRange:kCMTimeRangeZero completion:^(NSMutableArray *images) {
+            [GifUtils imgsWithVideoAsset:avasset withTimeInterval:interval withTimeRange:kCMTimeRangeZero completion:^(NSMutableArray *images) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [HudManager hideLoading];
                     if (images.count > 0) {
@@ -207,115 +207,6 @@
             }];
         });
     }];
-}
-
-/** 视频-->图片 将视频转为按指定间隔转成一组图片
- * avasset : 视频资源
- * interval : 每帧之间的间隔
- * block 返回所需的一组图片
- */
--(void)imgsWithVideoAsset:(AVAsset *)avasset withTimeInterval:(float)interval withTimeRange:(CMTimeRange)range completion:(void(^)(NSMutableArray *images))completionBlock {
-    NSMutableArray *resultImages = [NSMutableArray array];
-    
-    if (interval <= 0) {
-        interval = 0.5;
-    }
-    
-    CMTime cmDuration = avasset.duration;
-    int startSeconds = 0;
-    
-    if (range.duration.value != 0) {
-        cmDuration = range.duration;
-        startSeconds = (int)(range.start.value / range.start.timescale);
-    }
-    
-    float videoLength = (float)cmDuration.value / cmDuration.timescale;
-    NSUInteger frameCount = videoLength / interval;
-//    frameCount = frameCount > 30 ? 30 : frameCount;
-    //确定时间间隔 timePoints->图片张数
-    NSMutableArray *timePoints = [NSMutableArray array];
-    for (int i = 0; i<frameCount; i++) {
-        float point = i * interval + startSeconds;
-        CMTime curTime = CMTimeMakeWithSeconds(point, 600);
-        [timePoints addObject:[NSValue valueWithCMTime:curTime]];
-    }
-    
-    if (timePoints.count == 0) {
-        completionBlock(nil);
-    }
-    
-    CGFloat pixel;
-    if (timePoints.count <= PIXEL_VIDEOGIF_SEGEMENT_NUMBER) {
-        pixel = MAX_PIXEL_VIDEOGIF_LESSIMAGE;
-    } else {
-        pixel = 800;
-    }
-    
-    AVAssetImageGenerator *generator = [[AVAssetImageGenerator alloc] initWithAsset:avasset];
-    generator.appliesPreferredTrackTransform = YES;
-    generator.maximumSize = [self sizeMaxWidth:800 withAvAsset:avasset];
-    generator.requestedTimeToleranceAfter = kCMTimeZero;
-    generator.requestedTimeToleranceBefore = kCMTimeZero;
-    
-    NSLock *locker = [[NSLock alloc] init];
-    __block NSUInteger blockCount = 0;
-    [generator generateCGImagesAsynchronouslyForTimes:timePoints completionHandler:^(CMTime requestedTime, CGImageRef  _Nullable image, CMTime actualTime, AVAssetImageGeneratorResult result, NSError * _Nullable error) {
-        
-        [locker lock];
-        blockCount ++;
-        if (result != AVAssetImageGeneratorSucceeded) {
-            NSLog(@"无法生成图片, error:%@", error);
-        }else {
-            UIImage *frameImg =[UIImage imageWithCGImage:image];
-            NSString *imgPath = [NSString stringWithFormat:@"%@%ld.png", VIDEO_IMGPATH, blockCount];
-            NSData *imgData = UIImageJPEGRepresentation(frameImg, 1.0);
-            [self deleteFileAtPath:imgPath];
-            [imgData writeToFile:imgPath atomically:YES];
-            [resultImages addObject:imgPath];
-            frameImg = nil;
-        }
-        
-        if (blockCount == timePoints.count) {
-            completionBlock(resultImages);
-        }
-        [locker unlock];
-    }];
-}
-
--(CGSize)sizeMaxWidth:(float)maxWidth withAvAsset:(AVAsset *)avasset {
-    float scale = 1.0f;
-    CGSize resultSize;
-//
-    NSLog(@"naturalSize.width = %f ,naturalSize.height = %f",avasset.naturalSize.width,avasset.naturalSize.height);
-
-    resultSize = avasset.naturalSize;
-    if (avasset.naturalSize.width > avasset.naturalSize.height) {
-        //原图 宽>高
-        if (maxWidth > avasset.naturalSize.width) {
-            scale = 1.0f;
-        }else {
-            scale = avasset.naturalSize.width / maxWidth;
-        }
-    }else {
-        //原图 宽<=高
-        if (maxWidth > avasset.naturalSize.height) {
-            scale = 1.0f;
-        }else {
-            scale = avasset.naturalSize.height / maxWidth;
-        }
-    }
-    resultSize = CGSizeMake(avasset.naturalSize.width/scale, avasset.naturalSize.height/scale);
-
-    NSLog(@"--------------------------");
-    NSLog(@"资源size%@， 缩小倍数%02f", NSStringFromCGSize(resultSize), (float)scale);
-    NSLog(@"--------------------------");
-    return resultSize;
-}
-
--(void)deleteFileAtPath:(NSString *)path{
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-    }
 }
 
 @end

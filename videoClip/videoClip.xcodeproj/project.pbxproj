@@ -20,6 +20,8 @@
 		0730108F25E8DB1600F2ADBB /* UIImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 0730108E25E8DB1600F2ADBB /* UIImage+Extras.m */; };
 		0730109325E8DEDB00F2ADBB /* FilterEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0730109225E8DEDB00F2ADBB /* FilterEmojiView.m */; };
 		0787ADA225E8E701005528BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0787ADA425E8E701005528BC /* InfoPlist.strings */; };
+		078A719625E908470099847E /* VideoCutRectCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 078A719425E908470099847E /* VideoCutRectCtrl.m */; };
+		078A719725E908470099847E /* VideoCutRectCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 078A719525E908470099847E /* VideoCutRectCtrl.xib */; };
 		07AFD93D25E63CBE00A323A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AFD93C25E63CBE00A323A0 /* AppDelegate.m */; };
 		07AFD94625E63CBE00A323A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07AFD94425E63CBE00A323A0 /* Main.storyboard */; };
 		07AFD94825E63CC100A323A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07AFD94725E63CC100A323A0 /* Assets.xcassets */; };
@@ -74,6 +76,9 @@
 		0787ADA825E8E7C2005528BC /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Main.strings"; sourceTree = "<group>"; };
 		0787ADA925E8E7C2005528BC /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		0787ADAA25E8E7C3005528BC /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		078A719325E908470099847E /* VideoCutRectCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCutRectCtrl.h; sourceTree = "<group>"; };
+		078A719425E908470099847E /* VideoCutRectCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCutRectCtrl.m; sourceTree = "<group>"; };
+		078A719525E908470099847E /* VideoCutRectCtrl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCutRectCtrl.xib; sourceTree = "<group>"; };
 		07AFD93825E63CBE00A323A0 /* videoClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = videoClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AFD93B25E63CBE00A323A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		07AFD93C25E63CBE00A323A0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -317,6 +322,9 @@
 				07AFD9B925E74DC900A323A0 /* NewVideoCutCtrl.h */,
 				07AFD9BA25E74DC900A323A0 /* NewVideoCutCtrl.m */,
 				07AFD9BB25E74DC900A323A0 /* NewVideoCutCtrl.xib */,
+				078A719325E908470099847E /* VideoCutRectCtrl.h */,
+				078A719425E908470099847E /* VideoCutRectCtrl.m */,
+				078A719525E908470099847E /* VideoCutRectCtrl.xib */,
 			);
 			path = Ctrl;
 			sourceTree = "<group>";
@@ -427,6 +435,7 @@
 				07AFD97925E6584F00A323A0 /* PickerCell.xib in Resources */,
 				070ACAC725E7A8E400574FF6 /* GifEditCtrl.xib in Resources */,
 				07AFD9BD25E74DC900A323A0 /* NewVideoCutCtrl.xib in Resources */,
+				078A719725E908470099847E /* VideoCutRectCtrl.xib in Resources */,
 				07AFD97325E652D200A323A0 /* VideoPickerController.xib in Resources */,
 				07AFD9DC25E77B6100A323A0 /* ThumbCell.xib in Resources */,
 				070ACAD725E7CF3100574FF6 /* GifResultCtrl.xib in Resources */,
@@ -495,6 +504,7 @@
 				07AFD9D625E77AD800A323A0 /* FrameModel.m in Sources */,
 				07AFD93D25E63CBE00A323A0 /* AppDelegate.m in Sources */,
 				0730108425E8D78C00F2ADBB /* Filter.m in Sources */,
+				078A719625E908470099847E /* VideoCutRectCtrl.m in Sources */,
 				07AFD98225E6662800A323A0 /* CellFlowLayout.m in Sources */,
 				0730108F25E8DB1600F2ADBB /* UIImage+Extras.m in Sources */,
 				07AFD9CC25E75C3000A323A0 /* SafeObject.m in Sources */,

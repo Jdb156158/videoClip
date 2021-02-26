@@ -143,7 +143,7 @@
     if (!_filterDisplayView) {
         CGFloat height = IS_IPhoneX_All ? 213 : 179;
         _filterDisplayView = [[FilterEmojiView alloc] initWithFrame:CGRectMake(0, K_H, K_W, height)];
-        _filterDisplayView.backgroundColor = [UIColor yellowColor];
+        _filterDisplayView.backgroundColor = [UIColor blackColor];
         FrameModel *model = self.selectedModels.firstObject;
         _filterDisplayView.sourceImage = [UIImage imageWithContentsOfFile:model.imagePath];
         

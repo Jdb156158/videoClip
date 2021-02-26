@@ -1,7 +1,7 @@
 //
 //  NewVideoCutCtrl.h
 //  videoClip
-//
+//  视频长度裁剪-比如裁剪20s以内的视频
 //  Created by db J on 2021/2/25.
 //
 

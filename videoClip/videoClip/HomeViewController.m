@@ -58,16 +58,16 @@
     
     VideoPickerController *videoCtrl = [[VideoPickerController alloc] init];
     videoCtrl.needCut = ^(AVAsset * _Nonnull asset, NSMutableArray * _Nonnull images) {
-        [weakSelf asyncPushCutCtrl:asset withImages:images];
+        [weakSelf asyncPushVideoCutCtrl:asset withImages:images];
     };
     videoCtrl.jumpEdit = ^(NSMutableArray * _Nonnull images) {
-        
+        [weakSelf asyncPushGifEditCtrl:images type:GifFromVideo];
     };
     [self.navigationController pushViewController:videoCtrl animated:YES];
 }
 
-#pragma mark - 弹出裁剪界面
-- (void)asyncPushCutCtrl:(AVAsset *)avasset withImages:(NSArray *)thumbImgs {
+#pragma mark - 弹出视频长度裁剪界面
+- (void)asyncPushVideoCutCtrl:(AVAsset *)avasset withImages:(NSArray *)thumbImgs {
     
     dispatch_async(dispatch_get_main_queue(), ^{
         NewVideoCutCtrl *videCutView = [[NewVideoCutCtrl alloc] init];
@@ -75,7 +75,17 @@
         videCutView.thumbImgs = thumbImgs;
         [self.navigationController pushViewController:videCutView animated:YES];
     });
+    
 }
 
+#pragma mark - 弹出Gif编辑页面
+- (void)asyncPushGifEditCtrl:(NSMutableArray *)imgs type:(GifType)gifType {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GifEditCtrl *next = [[GifEditCtrl alloc] init];
+        next.originImages = imgs;
+        next.gifType = gifType;
+        [self.navigationController pushViewController:next animated:YES];
+    });
+}
 
 @end

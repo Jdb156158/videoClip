@@ -22,6 +22,8 @@
 		0787ADA225E8E701005528BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0787ADA425E8E701005528BC /* InfoPlist.strings */; };
 		078A719625E908470099847E /* VideoCutRectCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 078A719425E908470099847E /* VideoCutRectCtrl.m */; };
 		078A719725E908470099847E /* VideoCutRectCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 078A719525E908470099847E /* VideoCutRectCtrl.xib */; };
+		078A719D25E90FF80099847E /* VideoCutPhotoListCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 078A719B25E90FF80099847E /* VideoCutPhotoListCtrl.m */; };
+		078A719E25E90FF80099847E /* VideoCutPhotoListCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 078A719C25E90FF80099847E /* VideoCutPhotoListCtrl.xib */; };
 		07AFD93D25E63CBE00A323A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AFD93C25E63CBE00A323A0 /* AppDelegate.m */; };
 		07AFD94625E63CBE00A323A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07AFD94425E63CBE00A323A0 /* Main.storyboard */; };
 		07AFD94825E63CC100A323A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07AFD94725E63CC100A323A0 /* Assets.xcassets */; };
@@ -79,6 +81,9 @@
 		078A719325E908470099847E /* VideoCutRectCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCutRectCtrl.h; sourceTree = "<group>"; };
 		078A719425E908470099847E /* VideoCutRectCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCutRectCtrl.m; sourceTree = "<group>"; };
 		078A719525E908470099847E /* VideoCutRectCtrl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCutRectCtrl.xib; sourceTree = "<group>"; };
+		078A719A25E90FF80099847E /* VideoCutPhotoListCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCutPhotoListCtrl.h; sourceTree = "<group>"; };
+		078A719B25E90FF80099847E /* VideoCutPhotoListCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCutPhotoListCtrl.m; sourceTree = "<group>"; };
+		078A719C25E90FF80099847E /* VideoCutPhotoListCtrl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCutPhotoListCtrl.xib; sourceTree = "<group>"; };
 		07AFD93825E63CBE00A323A0 /* videoClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = videoClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AFD93B25E63CBE00A323A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		07AFD93C25E63CBE00A323A0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -219,6 +224,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		078A719925E90F5C0099847E /* VideoCutPhotoListCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				078A719A25E90FF80099847E /* VideoCutPhotoListCtrl.h */,
+				078A719B25E90FF80099847E /* VideoCutPhotoListCtrl.m */,
+				078A719C25E90FF80099847E /* VideoCutPhotoListCtrl.xib */,
+			);
+			path = VideoCutPhotoListCtrl;
+			sourceTree = "<group>";
+		};
 		07AFD92F25E63CBE00A323A0 = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +259,7 @@
 				07AFD9BF25E7597400A323A0 /* UtilsTools */,
 				07AFD99525E6825E00A323A0 /* VideoCutCtrl */,
 				07AFD96E25E652B400A323A0 /* VideoPickerCtrl */,
+				078A719925E90F5C0099847E /* VideoCutPhotoListCtrl */,
 				070ACAC225E7A87300574FF6 /* GifEditCtrl */,
 				070ACAD225E7CF1400574FF6 /* GifResultCtrl */,
 				0730107E25E8D68B00F2ADBB /* FilterCtrl */,
@@ -440,6 +456,7 @@
 				07AFD9DC25E77B6100A323A0 /* ThumbCell.xib in Resources */,
 				070ACAD725E7CF3100574FF6 /* GifResultCtrl.xib in Resources */,
 				07AFD95B25E643C700A323A0 /* HomeViewController.xib in Resources */,
+				078A719E25E90FF80099847E /* VideoCutPhotoListCtrl.xib in Resources */,
 				0730108B25E8D93300F2ADBB /* FilterCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +512,7 @@
 			files = (
 				07AFD9DB25E77B6100A323A0 /* ThumbCell.m in Sources */,
 				070ACAC025E7898A00574FF6 /* GifUtils.m in Sources */,
+				078A719D25E90FF80099847E /* VideoCutPhotoListCtrl.m in Sources */,
 				070ACADD25E7D65400574FF6 /* EditImageView.m in Sources */,
 				07AFD9BC25E74DC900A323A0 /* NewVideoCutCtrl.m in Sources */,
 				07AFD9C725E75B6700A323A0 /* UIViewController+Utils.m in Sources */,
